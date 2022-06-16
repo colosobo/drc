@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- log4j2 配置文件 -->
+<Configuration name="log4j2Conf" status="WARN" monitorInterval="60">
+    <properties>
+        <property name="log.path" value="./logs"/>
+        <property name="log.encoding" value="UTF-8"/>
+        <property name="log.level" value="INFO"/>
+        <property name="appName" value="drcPD"/>
+    </properties>
+
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p %c{2} [%t] - %m %X{AppId} %X{LoginId} %X{TrackId}%n"/>
+        </Console>
+
+        <!-- 默认 Appender -->
+        <RollingFile name="DEFAULT-APPENDER" fileName="${log.path}/default.log"
+                     filePattern="${log.path}/default-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout charset="${log.encoding}" pattern="%d %-5p %c{2} - %m %X{AppId} %X{LoginId} %X{TrackId}%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="250MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${log.path}" maxDepth="1">
+                    <IfFileName glob="default-*.log"/>
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!-- 异常日志 Appender -->
+        <RollingFile name="SYS-ERROR-APPENDER" fileName="${log.path}/error.log"
+                     filePattern="${log.path}/error-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout charset="${log.encoding}" pattern="%d %-5p %c{2} - %m %X{AppId} %X{LoginId} %X{TrackId}%n"/>
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="250MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${log.path}" maxDepth="1">
+                    <IfFileName glob="error-*.log"/>
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!-- 服务 Appender -->
+        <RollingFile name="SYS-BIZ-SERVICE-APPENDER" fileName="${log.path}/service.log"
+                     filePattern="${log.path}/service-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout charset="${log.encoding}" pattern="%d %-5p %c{2} - %m %X{AppId} %X{LoginId} %X{TrackId}%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="250MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${log.path}" maxDepth="1">
+                    <IfFileName glob="service-*.log"/>
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!-- DAL Appender -->
+        <RollingFile name="DAL-APPENDER" fileName="${log.path}/dal.log"
+                     filePattern="${log.path}/dal-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout charset="${log.encoding}" pattern="%d %-5p %c{2} - %m %X{AppId} %X{LoginId} %X{TrackId}%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="250MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${log.path}" maxDepth="1">
+                    <IfFileName glob="dal-*.log"/>
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- DAL统一日志 -->
+        <Logger name="com.timevale.drc.pd.dal" level="${log.level}"
+                additivity="false">
+            <AppenderRef ref="DAL-APPENDER"/>
+            <AppenderRef ref="SYS-ERROR-APPENDER"/>
+        </Logger>
+
+        <Logger name="org.apache.ibatis" level="${log.level}"
+                additivity="false">
+            <AppenderRef ref="DAL-APPENDER"/>
+            <AppenderRef ref="SYS-ERROR-APPENDER"/>
+        </Logger>
+
+        <!-- 数据访问层 - SQL -->
+        <Logger name="com.alibaba.druid" level="${log.level}"
+                additivity="false">
+            <AppenderRef ref="DAL-APPENDER"/>
+            <AppenderRef ref="SYS-ERROR-APPENDER"/>
+        </Logger>
+
+        <!-- 业务服务层日志 -->
+        <Logger name="com.timevale.drc.pd" level="${log.level}"
+                additivity="false">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="SYS-BIZ-SERVICE-APPENDER"/>
+            <AppenderRef ref="SYS-ERROR-APPENDER"/>
+        </Logger>
+
+        <Root level="${log.level}">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="DEFAULT-APPENDER"/>
+            <AppenderRef ref="SYS-ERROR-APPENDER"/>
+        </Root>
+    </Loggers>
+</Configuration>
