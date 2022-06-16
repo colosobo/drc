@@ -1,3 +1,10 @@
+![visitors](https://visitor-badge.glitch.me/badge?page_id=colosobo.drc&left_color=green&right_color=red)
+[![build status](https://travis-ci.com/colosobo/drc.svg?branch=master)](https://travis-ci.com/colosobo/drc)
+[![codecov](https://codecov.io/gh/colosobo/drc/branch/master/graph/badge.svg)](https://codecov.io/gh/colosobo/drc)
+![license](https://img.shields.io/github/license/colosobo/drc.svg)
+[![average time to resolve an issue](http://isitmaintained.com/badge/resolution/colosobo/drc.svg)](http://isitmaintained.com/project/colosobo/drc "average time to resolve an issue")
+[![percentage of issues still open](http://isitmaintained.com/badge/open/colosobo/drc.svg)](http://isitmaintained.com/project/colosobo/drc "percentage of issues still open")
+
 ## DRC Cluster
 
 DRC(Data Replication Center) 数据复制中心
@@ -7,6 +14,7 @@ DRC(Data Replication Center) 数据复制中心
 ## 功能
 1. 支持 MySQL 全量 + 增量同步到各种数据源(MySQL, Kafka, RocketMQ);
 2. 支持回环同步
+3. 支持动态扩容, 解决 canal 扩容运维较为麻烦的问题
 
 ## PD
 Placement Driver
@@ -53,3 +61,7 @@ AutoRecoverTask 定时任务，固定间隔调度一次，发现数据库状态�
 本项目基于 canal 项目二次开发而来, 感谢 [canal](https://github.com/alibaba/canal) 项目和 canal 的开发者.
 
 本项目使用 jetbrains IDEA 工具开发, 感谢 jetbrains 提供如此高效率的开发工具!
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=colosobo/drc&type=Date)](https://star-history.com/#colosobo/drc&Date)
