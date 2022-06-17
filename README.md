@@ -9,7 +9,9 @@
 
 DRC(Data Replication Center) 数据复制中心
 
-[基于 Canal 设计可扩展、高可用 binlog 同步集群](https://www.jianshu.com/p/bd02615141e0)
+## 文章介绍
+
+[简书：基于 Canal 设计可扩展、高可用 binlog 同步集群](https://www.jianshu.com/p/bd02615141e0)
 
 ![架构](架构.jpg)
 
