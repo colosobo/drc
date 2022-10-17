@@ -502,13 +502,13 @@ export default {
         username: {required: true, message: '请输入', trigger: 'blur'},
       },
       CanalKafkaForm: {
-        kafkaBootstrapServers: '192.168.2.128:6667',
+        kafkaBootstrapServers: '192.168.2.2:6667',
         topic: 'DRC_DS_',
         partition: '0',
         messageFormatType: 2
       },
       KafkaForm: {
-        kafkaBootstrapServers: '192.168.2.128:6667',
+        kafkaBootstrapServers: '192.168.2.2:6667',
         topic: 'DRC_DS_',
         oncePartitionEnabled: false,
         partition: '',
