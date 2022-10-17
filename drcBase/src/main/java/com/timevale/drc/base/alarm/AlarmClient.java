@@ -16,10 +16,10 @@ import java.util.List;
  */
 public class AlarmClient {
 
-    public static final String SUFFIX_PATH = "/monitor/v1/notice/batch";
-    public static final String TEST_DOMAIN = "http://monitor-stable.tsign.cn" + SUFFIX_PATH;
+    public static final String SUFFIX_PATH = "/null";
+    public static final String TEST_DOMAIN = "http://tsign.cn" + SUFFIX_PATH;
     /** 这个是横天给的. */
-    public static final String FROM = "a62c8d7768daea64cc85baa6e901c233";
+    public static final String FROM = "unKnow";
     public static final String SUBJECT = "DRC CLUSTER 系统告警";
     public static final String APP = "DRC CLUSTER";
 

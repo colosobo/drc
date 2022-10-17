@@ -15,7 +15,7 @@ public class MySqlSinkTest {
     @Test
     public void sink1() {
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplateManager().get("192.168.2.137:3306", "root", "root123", "xm");
+        JdbcTemplate jdbcTemplate = new JdbcTemplateManager().get("192.168.2.2:3306", "root", "null", "xm");
 
         MySqlSink mySQLSink = new MySqlSink(jdbcTemplate, MySQLSinkConfig.builder()
                 .tableName("sand_test")
@@ -44,7 +44,7 @@ public class MySqlSinkTest {
     @Test
     public void sink2() {
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplateManager().get("192.168.2.137:3306", "root", "root123", "xm");
+        JdbcTemplate jdbcTemplate = new JdbcTemplateManager().get("192.168.2.2:3306", "root", "null", "xm");
 
         MySqlSink mySQLSink = new MySqlSink(jdbcTemplate, MySQLSinkConfig.builder()
                 .tableName("sand_test")
@@ -74,7 +74,7 @@ public class MySqlSinkTest {
     @Test
     public void sink3() {
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplateManager().get("192.168.2.137:3306", "root", "root123", "xm");
+        JdbcTemplate jdbcTemplate = new JdbcTemplateManager().get("192.168.2.2:3306", "root", "null", "xm");
 
         MySqlSink mySQLSink = new MySqlSink(jdbcTemplate, MySQLSinkConfig.builder()
                 .tableName("sand_test")

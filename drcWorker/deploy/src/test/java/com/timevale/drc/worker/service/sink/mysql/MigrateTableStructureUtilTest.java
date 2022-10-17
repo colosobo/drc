@@ -17,14 +17,14 @@ public class MigrateTableStructureUtilTest {
     public void migrateTableStructure() {
 
         MigrateTableStructureUtil migrateTableStructureUtil = new MigrateTableStructureUtil();
-        DrcDbConfig old = new DrcDbConfig("192.168.2.137:3306", "root", "root123", "crawler");
+        DrcDbConfig old = new DrcDbConfig("192.168.2.2:3306", "root", "null", "cr");
         ;
-        DrcDbConfig newC = new DrcDbConfig("192.168.2.137:3306", "root", "root123", "xm");
+        DrcDbConfig newC = new DrcDbConfig("192.168.2.2:3306", "root", "null", "xm");
         String table = "sand_test";
         migrateTableStructureUtil.migrateTableStructure(old, newC, table, table);
 
 
-        Set<String> o = new JdbcTemplateManager().get("192.168.2.137:3306", "root", "root123", "crawler").
+        Set<String> o = new JdbcTemplateManager().get("192.168.2.2:3306", "root", "null", "cr").
                 queryForObject("select COLUMN_NAME from information_schema.COLUMNS where table_name = 'sand_test';", new RowMapper<Set<String>>() {
                     @Override
                     public Set<String> mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -42,7 +42,7 @@ public class MigrateTableStructureUtilTest {
     @Test
     public void f() {
         JdbcTemplateManager jdbcTemplateManager = new JdbcTemplateManager();
-        Set<String> strings = jdbcTemplateManager.showTables("192.168.2.137:3306", "root", "root123", "crawler");
+        Set<String> strings = jdbcTemplateManager.showTables("192.168.2.2:3306", "root", "null", "cr");
         System.out.println(strings);
     }
 }
